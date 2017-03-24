@@ -8,6 +8,7 @@ module.exports = {
     output: {
         filename: 'index.js',
         publicPath: 'js/'
+
     },
     module: {
         loaders: [
