@@ -16,7 +16,7 @@ let Todo = React.createClass({
             </div>)
         });
         return (
-            <div className="    container-fluid">
+            <div className="container-fluid">
                 {lists}
             </div>
         )
@@ -25,7 +25,7 @@ let Todo = React.createClass({
 
 let Content = React.createClass({
     render(){
-        return <input className="  form-control" defaultValue={this.props.content}/>;
+        return <input className="form-control" defaultValue={this.props.content}/>;
     }
 });
 let CheckTodo = React.createClass({
