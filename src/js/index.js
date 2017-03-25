@@ -3,6 +3,7 @@
  */
 import ReactDOM from 'react-dom';
 import React from 'react';
+import Data from './tododata';
 
 let Todo = React.createClass({
     render(){
@@ -45,14 +46,8 @@ let DeleteTodo = React.createClass({
         );
     }
 });
-let data = [{
-    completed: false,
-    content: 'to do sth',
-}, {
-    completed: false,
-    content: 'to do sth2',
-}];
+
 ReactDOM.render(
-    <div className="row"><Todo data={data}/></div>
+    <div className="row"><Todo data={Data}/></div>
     , document.getElementById('example2')
 );
