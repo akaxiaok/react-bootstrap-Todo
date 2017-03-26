@@ -9,14 +9,14 @@ let Todo = React.createClass({
     render(){
         let lists = [];
         this.props.data.forEach(function (v, i) {
-            lists.push(<div key={i} className="input-group col-md-offset-2 col-md-3">
-                <CheckTodo/>
-                <Content content={v.content}/>
-                <DeleteTodo/>
-            </div>)
+            lists.push(
+                <div key={i} className="" style={{fontSize: '24px'}}>
+                    <CheckTodo id={i} content={v.content}/>
+                    <DeleteTodo/>
+                </div>)
         });
         return (
-            <div className="container-fluid">
+            <div className="container">
                 {lists}
             </div>
         )
@@ -31,8 +31,9 @@ let Content = React.createClass({
 let CheckTodo = React.createClass({
     render(){
         return (
-            <span className="input-group-addon ">
-                <input type="checkbox" aria-label="..."/>
+            <span>
+                <input type="checkbox" className="awesome" id={'checkbox' + this.props.id}/>
+                < label htmlFor={'checkbox' + this.props.id}>{this.props.content}</label>
             </span>
         )
     }
@@ -40,14 +41,14 @@ let CheckTodo = React.createClass({
 let DeleteTodo = React.createClass({
     render(){
         return (
-            <span className="input-group-btn">
-                <button className="btn btn-default" type="button">Delete</button>
-            </span>
+            <a type="button" className="" href="#" style={{marginLeft: '.1em', verticalAlign: '-.1em'}}>
+                <span className="glyphicon glyphicon-remove" aria-hidden="true"/>
+            </a>
         );
     }
 });
 
 ReactDOM.render(
-    <div className="row"><Todo data={Data}/></div>
-    , document.getElementById('example2')
+    <Todo data={Data}/>
+    , document.getElementById('todo')
 );
