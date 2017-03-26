@@ -1,0 +1,23 @@
+.awesome + label::before {
+    display: inline-block; /*不换行空格*/
+    margin-right: .2em;
+    width: .8em;
+    height: .8em;
+    border-radius: .2em;
+    background: silver;
+    content: '\a0';
+    vertical-align: .1em;
+    text-indent: .15em;
+    line-height: .65;
+}
+
+.awesome:checked + label::before {
+    background: yellowgreen;
+    content: '\2713';
+}
+
+.awesome {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+}
+
