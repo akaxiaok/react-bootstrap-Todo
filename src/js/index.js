@@ -4,15 +4,25 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 import Data from './tododata';
-
+let thisData = Data;
+console.log(thisData);
 let Todo = React.createClass({
+    handleDelete(i){
+        thisData.splice(i, 1);
+        console.log(thisData);
+        this.setState({
+            data: thisData
+        })
+    },
     render(){
         let lists = [];
-        this.props.data.forEach(function (v, i) {
+        let data = this.props.data;
+        let handle = this.handleDelete;
+        data.forEach(function (v, i) {
             lists.push(
                 <div key={i} className="" style={{fontSize: '24px'}}>
                     <CheckTodo id={i} content={v.content}/>
-                    <DeleteTodo/>
+                    <DeleteTodo id={i} onDelete={handle}/>
                 </div>)
         });
         return (
@@ -20,7 +30,8 @@ let Todo = React.createClass({
                 {lists}
             </div>
         )
-    }
+    },
+
 });
 
 let Content = React.createClass({
@@ -39,16 +50,22 @@ let CheckTodo = React.createClass({
     }
 });
 let DeleteTodo = React.createClass({
-    render(){
-        return (
-            <a type="button" className="" href="#" style={{marginLeft: '.1em', verticalAlign: '-.1em'}}>
-                <span className="glyphicon glyphicon-remove" aria-hidden="true"/>
-            </a>
-        );
+        render(){
+            return (
+                <a type="button" className="" href="#" style={{marginLeft: '.1em', verticalAlign: '-.1em'}}
+                   onClick={this.handleClick}>
+                    <span className="glyphicon glyphicon-remove" aria-hidden="true"/>
+                </a>
+            );
+        },
+        handleClick(){
+            console.log(this.props.onDelete);
+            this.props.onDelete(this.props.id);
+        }
     }
-});
+);
 
 ReactDOM.render(
-    <Todo data={Data}/>
+    <Todo data={thisData}/>
     , document.getElementById('todo')
 );
