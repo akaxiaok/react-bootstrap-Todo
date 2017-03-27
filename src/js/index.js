@@ -3,22 +3,24 @@
  */
 import ReactDOM from 'react-dom';
 import React from 'react';
-import Data from './tododata';
-let thisData = Data;
-console.log(thisData);
+import data from './tododata';
 let Todo = React.createClass({
+    getInitialState(){
+        return {
+            data: data,
+        }
+    },
     handleDelete(i){
-        thisData.splice(i, 1);
-        console.log(thisData);
+        this.state.data.splice(i, 1);
         this.setState({
-            data: thisData
-        })
+            data: data,
+        });
     },
     render(){
         let lists = [];
-        let data = this.props.data;
         let handle = this.handleDelete;
-        data.forEach(function (v, i) {
+        this.state.data.forEach(function (v, i) {
+            console.log(v, i);
             lists.push(
                 <div key={i} className="" style={{fontSize: '24px'}}>
                     <CheckTodo id={i} content={v.content}/>
@@ -59,13 +61,12 @@ let DeleteTodo = React.createClass({
             );
         },
         handleClick(){
-            console.log(this.props.onDelete);
             this.props.onDelete(this.props.id);
         }
     }
 );
 
 ReactDOM.render(
-    <Todo data={thisData}/>
+    <Todo />
     , document.getElementById('todo')
 );
