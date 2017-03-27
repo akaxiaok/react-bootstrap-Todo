@@ -10,9 +10,9 @@ class TodoContent extends React.Component {
 
     render() {
         return (
-            <span>
+            <span >
             <input type="checkbox" className="awesome" id={'checkbox' + this.props.id}/>
-            < label htmlFor={'checkbox' + this.props.id}>{this.props.content}</label>
+            <label className="col-sm-4" htmlFor={'checkbox' + this.props.id}>{this.props.content}</label>
             </span>
         )
     }
