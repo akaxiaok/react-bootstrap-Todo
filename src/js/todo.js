@@ -27,16 +27,22 @@ class Todo extends React.Component {
             data: data
         })
     }
+    toggleContent = (i) => {
+        data[i].completed = !data[i].completed;
+        console.log(data);
+        this.setState({
+            data: data
+        })
+    }
 
     render() {
         let lists = [];
-        let handle = this.handleDelete;
-        this.state.data.forEach(function (v, i) {
-            if (!v.complete) {
+        this.state.data.forEach((v, i) => {
+            if (!v.completed) {
                 lists.push(
                     <div key={i} className="row" style={{fontSize: '24px'}}>
-                        <TodoContent id={i} content={v.content}/>
-                        <DeleteTodo id={i} onDelete={handle}/>
+                        <TodoContent id={i} content={v.content} toggle={this.toggleContent}/>
+                        <DeleteTodo id={i} onDelete={this.handleDelete}/>
                     </div>)
             }
         });

@@ -8,11 +8,16 @@ class TodoContent extends React.Component {
         super(props);
     }
 
+    handleClick = e => {
+        this.props.toggle(this.props.id);
+    }
+
     render() {
         return (
             <span >
             <input type="checkbox" className="awesome" id={'checkbox' + this.props.id}/>
-            <label className="col-sm-4" htmlFor={'checkbox' + this.props.id}>{this.props.content}</label>
+            <label className="col-sm-4" onClick={this.handleClick}
+                   htmlFor={'checkbox' + this.props.id}>{this.props.content}</label>
             </span>
         )
     }
