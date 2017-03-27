@@ -42,6 +42,9 @@ class Todo extends React.Component {
         });
         return (
             <div className="container">
+                <div className="page-header">
+                    <h1>TodoList:</h1>
+                </div>
                 <AddTodo addTodo={this.handleAddTodo}/>
                 {lists}
             </div>
