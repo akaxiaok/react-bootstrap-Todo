@@ -21,3 +21,10 @@
     clip: rect(0, 0, 0, 0);
 }
 
+.content-list {
+    width: 100%;
+}
+
+.view-buttons {
+    margin: 0 0 .5em 0;
+}
