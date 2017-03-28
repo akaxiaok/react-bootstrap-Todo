@@ -23,7 +23,7 @@ class AddTodo extends React.Component {
 
     render() {
         return (
-            <form className="row" onSubmit={this.handleClick}>
+            <form onSubmit={this.handleClick}>
                 <div className="input-group col-sm-5">
                     <input type="text" className="form-control" required placeholder="add new todo"/>
                     <span className="input-group-btn">
