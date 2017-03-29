@@ -16,17 +16,25 @@ class TodoView extends React.Component {
         console.log(e.target.subli);
         this.props.onSwitch(x);
     }
-
+    getStyle = (x) => {
+        if (x === this.props.currentState) {
+            return "btn btn-primary";
+        }
+        else {
+            return "btn btn-default";
+        }
+    }
     render() {
         return (
             <div className="btn-group view-buttons" role="group" aria-label="...">
-                <button type="button" className="btn btn-default" onClick={this.handleClick.bind(this, VIEW_STATE.all)}>
+                <button type="button" className={this.getStyle(VIEW_STATE.all)}
+                        onClick={this.handleClick.bind(this, VIEW_STATE.all)}>
                     All
                 </button>
-                <button type="button" className="btn btn-default"
+                <button type="button" className={this.getStyle(VIEW_STATE.active)}
                         onClick={this.handleClick.bind(this, VIEW_STATE.active)}>Active
                 </button>
-                <button type="button" className="btn btn-default"
+                <button type="button" className={this.getStyle(VIEW_STATE.completed)}
                         onClick={this.handleClick.bind(this, VIEW_STATE.completed)}>Completed
                 </button>
             </div>
