@@ -24,7 +24,14 @@ class Todo extends React.Component {
     }
     handleAddTodo = v => {
         data.push({completed: false, content: v});
-        this.setState({data: data});
+        if (this.state.currentState === VIEW_STATE.completed) {
+            this.setState({currentState: VIEW_STATE.active}, () => {
+                this.switchView(this.state.currentState);
+            });
+        } else {
+            this.switchView(this.state.currentState);
+        }
+
     }
     switchView = s => {
         switch (s) {
@@ -53,7 +60,6 @@ class Todo extends React.Component {
     }
     toggleContent = (i) => {
         data[data.indexOf(i)].completed = !i.completed;
-        console.log(data);
         this.switchView(this.state.currentState);
     }
 
@@ -71,7 +77,7 @@ class Todo extends React.Component {
                 <div className="page-header">
                     <h1>TodoList:</h1>
                 </div>
-                <TodoView onSwitch={this.switchView}/>
+                <TodoView onSwitch={this.switchView} currentState={this.state.currentState}/>
                 <AddTodo addTodo={this.handleAddTodo}/>
                 <div className="content-list">
                     {lists}
