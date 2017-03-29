@@ -14,12 +14,14 @@ class TodoContent extends React.Component {
 
     render() {
         return (
-            <span>
-                 <input type="checkbox" className="awesome" id={'checkbox' + this.props.id} onChange={this.handleClick}
-                        checked={this.props.data.completed}/>
-                <label className="col-sm-4"
-                       htmlFor={'checkbox' + this.props.id}>{this.props.data.content}</label>
-            </span>
+            <label className="col-sm-4 col-xs-8" style={{overflow: 'hidden', textOverflow: 'ellipsis'}}>
+                <span style={{position: 'absolute'}}>
+                        <input type="checkbox" className="awesome" id={'checkbox' + this.props.id}
+                               onChange={this.handleClick} checked={this.props.data.completed}/>
+                        <label className=""/>
+                </span>
+                <span style={{marginLeft: '1em',}}>{this.props.data.content}</span>
+            </label>
         )
     }
 }
