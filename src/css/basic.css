@@ -12,7 +12,7 @@
 }
 
 .awesome:checked + label::before {
-    background: yellowgreen;
+    background: #337ab7;
     content: '\2713';
 }
 
