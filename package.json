@@ -1,12 +1,9 @@
 {
-  "name": "demo",
+  "name": "react-bootstrap-todo",
   "version": "1.0.0",
-  "description": "",
+  "description": "a todo based on react and bootstrap",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --ui qunit --compilers js:bable-core/register",
-    "build": "babel src -d build",
-    "lint": "eslint src"
   },
   "author": "Kimi",
   "license": "ISC",
@@ -23,9 +20,6 @@
     "babel-register": "^6.24.0",
     "eslint": "^3.17.1",
     "gulp": "^3.9.1",
-    "gulp-livereload": "^3.8.1",
-    "gulp-myth": "^1.1.0",
-    "gulp-notify": "^3.0.0",
     "gulp-webpack": "^1.5.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
