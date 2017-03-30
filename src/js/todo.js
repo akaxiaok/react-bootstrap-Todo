@@ -7,6 +7,8 @@ import TodoContent from './todocontent';
 import DeleteTodo from './deletetodo'
 import AddTodo from './addtodo';
 import {TodoView, VIEW_STATE} from './todoview'
+import EditTodo from './edittodo';
+
 class Todo extends React.Component {
     constructor(props) {
         super(props);
@@ -62,13 +64,22 @@ class Todo extends React.Component {
         data[data.indexOf(i)].completed = !i.completed;
         this.switchView(this.state.currentState);
     }
-
+    startEdit = (data) => {
+        data.edit = true;
+        this.switchView(this.state.currentState);
+    }
+    setChange = (data) => {
+        data.edit = false;
+        console.log(data);
+        this.switchView(this.state.currentState);
+    }
     render() {
         let lists = [];
         this.state.data.forEach((v, i) => {
             lists.push(
                 <div key={i} className="row" style={{fontSize: '24px'}}>
-                    <TodoContent id={i} data={v} toggle={this.toggleContent}/>
+                    <TodoContent id={i} data={v} toggle={this.toggleContent} setChange={this.setChange}/>
+                    <EditTodo id={i} data={v} startEdit={this.startEdit}/>
                     <DeleteTodo id={i} onDelete={this.handleDelete}/>
                 </div>)
         });
