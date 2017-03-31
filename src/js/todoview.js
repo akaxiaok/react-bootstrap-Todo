@@ -13,7 +13,6 @@ class TodoView extends React.Component {
     }
 
     handleClick = (x, e) => {
-        console.log(e.target.subli);
         this.props.onSwitch(x);
     }
     getStyle = (x) => {
