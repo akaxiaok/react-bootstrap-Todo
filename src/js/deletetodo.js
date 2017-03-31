@@ -18,7 +18,7 @@ class DeleteTodo extends React.Component {
     }
 
     handleClick = () => {
-        this.props.onDelete(this.props.id);
+        this.props.onDelete(this.props.data);
     }
 }
 export default DeleteTodo;
