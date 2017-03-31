@@ -11,12 +11,6 @@ class TodoContent extends React.Component {
     handleClick = e => {
         this.props.toggle(this.props.data);
     }
-    componentDidUpdate = () => {
-        console.log('did');
-    }
-    componentWillReceiveProps = () => {
-        console.log('will');
-    }
     handleBlur = (e) => {
         this.props.data.content = e.target.value;
         this.props.setChange(this.props.data)
@@ -36,9 +30,9 @@ class TodoContent extends React.Component {
                      <span style={{position: 'absolute'}}>
                         <input type="checkbox" className="awesome" id={'checkbox' + this.props.id}
                                onChange={this.handleClick} checked={this.props.data.completed}/>
-                         <label className=""/>
+                         <label htmlFor={'checkbox' + this.props.id}/>
                      </span>
-                    <span style={{marginLeft: '1em',}}>{this.props.data.content}</span>
+                    <span style={{marginLeft: '1em', whiteSpace: 'nowrap'}}>{this.props.data.content}</span>
                 </label>
 
             )
