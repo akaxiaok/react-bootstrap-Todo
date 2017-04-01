@@ -1,15 +1,12 @@
 var gulp = require('gulp'),
-    webpackConf = require('./webpack.config'),
+    webpackConf = require('./webpack.config.build'),
     webpack = require('gulp-webpack');
-gulp.task('default', ['style', 'webpack', 'html', 'index', 'fonts']);
+gulp.task('default', ['style', 'webpack', 'html', 'index']);
 
 gulp.task('style', function () {
     gulp.src('src/css/*.css').pipe(gulp.dest('build/css'));
-    gulp.src('node_modules/bootstrap/dist/css/bootstrap.css').pipe(gulp.dest('build/css'));
 });
-gulp.task('fonts', function () {
-    gulp.src('node_modules/bootstrap/fonts/*').pipe(gulp.dest('build/fonts'));
-});
+
 gulp.task('html', function () {
     gulp.src('src/html/*.html').pipe(gulp.dest('build/html/'));
 });
