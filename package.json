@@ -1,6 +1,6 @@
 {
   "name": "react-bootstrap-todo",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "a todo based on react and bootstrap",
   "main": "index.js",
   "scripts": {
