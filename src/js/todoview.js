@@ -2,19 +2,14 @@
  * Created by Kimi on 2017/3/28.
  */
 import React from 'react';
-const VIEW_STATE = {
-    all: 1,
-    active: 2,
-    completed: 3,
-};
+import {VisibilityFilters, setVisibilityFilter} from './actions';
+import {connect} from 'react-redux';
 class TodoView extends React.Component {
     constructor(props) {
         super(props);
     }
 
-    handleClick = (x, e) => {
-        this.props.onSwitch(x);
-    }
+
     getStyle = (x) => {
         if (x === this.props.currentState) {
             return "btn btn-primary";
@@ -23,22 +18,38 @@ class TodoView extends React.Component {
             return "btn btn-default";
         }
     }
+
     render() {
         return (
             <div className="btn-group view-buttons" role="group" aria-label="...">
-                <button type="button" className={this.getStyle(VIEW_STATE.all)}
-                        onClick={this.handleClick.bind(this, VIEW_STATE.all)}>
+                <button type="button" className={this.getStyle(VisibilityFilters.SHOW_ALL)}
+                        onClick={this.props.handleClick.bind(this, VisibilityFilters.SHOW_ALL)}>
                     All
                 </button>
-                <button type="button" className={this.getStyle(VIEW_STATE.active)}
-                        onClick={this.handleClick.bind(this, VIEW_STATE.active)}>Active
+                <button type="button" className={this.getStyle(VisibilityFilters.SHOW_ACTIVE)}
+                        onClick={this.props.handleClick.bind(this, VisibilityFilters.SHOW_ACTIVE)}>Active
                 </button>
-                <button type="button" className={this.getStyle(VIEW_STATE.completed)}
-                        onClick={this.handleClick.bind(this, VIEW_STATE.completed)}>Completed
+                <button type="button" className={this.getStyle(VisibilityFilters.SHOW_COMPLETED)}
+                        onClick={this.props.handleClick.bind(this, VisibilityFilters.SHOW_COMPLETED)}>Completed
                 </button>
             </div>
         )
     }
 }
-export {TodoView, VIEW_STATE};
+function mapStateToPorps(state) {
+    return {
+        currentState: state.visibilityFilter
+    }
+}
+function mapDispatchToProps(dispatch) {
+    return {
+        handleClick: (filter) => {
+            dispatch(setVisibilityFilter(filter))
+        }
+    };
+}
+
+TodoView = connect(mapStateToPorps, mapDispatchToProps)(TodoView)
+
+export default TodoView;
 
