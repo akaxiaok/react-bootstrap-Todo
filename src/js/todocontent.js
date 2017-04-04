@@ -2,25 +2,23 @@
  * Created by Kimi on 2017/3/27.
  */
 import React from 'react';
-
+import {toggleTodo, endEdit} from './actions';
+import {connect} from 'react-redux';
 class TodoContent extends React.Component {
     constructor(props) {
         super(props);
-    }
-
-    handleClick = e => {
-        this.props.toggle(this.props.data);
     }
     handleBlur = (e) => {
         this.props.data.content = e.target.value;
         this.props.setChange(this.props.data)
     }
     render() {
-
-        if (this.props.data.edit === true) {
+        console.log(this.props.todo.edit);
+        if (this.props.todo.edit === true) {
             return (
                 <label className="col-sm-4 col-xs-8" style={{overflow: 'hidden', textOverflow: 'ellipsis'}}>
-                    <input className="form-control" defaultValue={this.props.data.content} onBlur={this.handleBlur}/>
+                    <input className="form-control" defaultValue={this.props.todo.content}
+                           onBlur={this.props.handleBlur.bind(this, this.props.todo)}/>
                 </label>
             )
         }
@@ -29,15 +27,30 @@ class TodoContent extends React.Component {
                 <label className="col-sm-4 col-xs-8" style={{overflow: 'hidden', textOverflow: 'ellipsis'}}>
                      <span style={{position: 'absolute'}}>
                         <input type="checkbox" className="awesome" id={'checkbox' + this.props.id}
-                               onChange={this.handleClick} checked={this.props.data.completed}/>
+                               onChange={this.props.handleClick.bind(this, this.props.todo)}
+                               checked={this.props.todo.completed}/>
                          <label htmlFor={'checkbox' + this.props.id}/>
                      </span>
-                    <span style={{marginLeft: '1em', whiteSpace: 'nowrap'}}>{this.props.data.content}</span>
+                    <span style={{marginLeft: '1em', whiteSpace: 'nowrap'}}>{this.props.todo.content}</span>
                 </label>
 
             )
         }
     }
 }
+
+function mapDispatchToProps(dispatch) {
+    return {
+        handleClick: (todo) => {
+            dispatch(toggleTodo(todo))
+        },
+        handleBlur: (todo, e) => {
+            dispatch(endEdit(todo, e.target.value));
+        }
+    };
+}
+
+
+TodoContent = connect(null, mapDispatchToProps)(TodoContent);
 
 export default TodoContent;
