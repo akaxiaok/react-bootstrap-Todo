@@ -2,7 +2,8 @@
  * Created by Kimi on 2017/3/27.
  */
 import React from 'react';
-
+import {addTodo} from './actions'
+import {connect} from 'react-redux';
 class AddTodo extends React.Component {
     constructor(props) {
         super(props);
@@ -15,10 +16,10 @@ class AddTodo extends React.Component {
             input.focus();
             return;
         }
-        this.props.addTodo(input.value);
+        let {dispatch} = this.props;
+        dispatch(addTodo(input.value));
         input.value = '';
         input.focus();
-
     }
 
     render() {
@@ -34,4 +35,5 @@ class AddTodo extends React.Component {
         )
     }
 }
+AddTodo = connect()(AddTodo);
 export default AddTodo;
