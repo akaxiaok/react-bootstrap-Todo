@@ -8,15 +8,17 @@ import AddTodo from './addtodo';
 import TodoView from './todoview'
 import EditTodo from './edittodo';
 import {connect} from 'react-redux';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 class Todo extends React.Component {
     constructor(props) {
         super(props);
     }
+
     render() {
         let lists = [];
         this.props.todos.forEach((v, i) => {
             lists.push(
-                <div key={i} className="row" style={{fontSize: '24px'}}>
+                <div key={v.id} className="row" style={{fontSize: '24px'}}>
                     <TodoContent id={i} todo={v}/>
                     <EditTodo id={i} todo={v}/>
                     <DeleteTodo todo={v}/>
@@ -30,8 +32,14 @@ class Todo extends React.Component {
                 <TodoView currentState={this.props.currentState}/>
                 <AddTodo />
                 <div className="content-list">
-                    {lists}
+                    <ReactCSSTransitionGroup
+                        transitionName="example"
+                        transitionEnterTimeout={500}
+                        transitionLeaveTimeout={300}>
+                        {lists}
+                    </ReactCSSTransitionGroup>
                 </div>
+
             </div>
         )
     }
@@ -39,20 +47,20 @@ class Todo extends React.Component {
 const getVisibleTodos = (todos, filter) => {
     switch (filter) {
         case 'SHOW_ALL':
-            return todos
+            return todos;
         case 'SHOW_COMPLETED':
-            return todos.filter(t => t.completed)
+            return todos.filter(t => t.completed);
         case 'SHOW_ACTIVE':
-            return todos.filter(t => !t.completed)
+            return todos.filter(t => !t.completed);
         default:
-            throw new Error('Unknown filter: ' + filter)
+            throw new Error('Unknown filter: ' + filter);
     }
-}
+};
 
 const mapStateToProps = (state) => ({
     todos: getVisibleTodos(state.todos, state.visibilityFilter),
     visibilityFilter: state.visibilityFilter
-})
+});
 
 Todo = connect(
     mapStateToProps
