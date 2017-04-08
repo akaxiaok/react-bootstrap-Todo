@@ -12,13 +12,20 @@ class TodoContent extends React.Component {
         this.props.data.content = e.target.value;
         this.props.setChange(this.props.data)
     }
+
+    componentDidUpdate() {
+        if (this.inputText) {
+            this.inputText.focus();
+        }
+    }
     render() {
         console.log(this.props.todo.edit);
         if (this.props.todo.edit === true) {
             return (
                 <label className="col-sm-4 col-xs-8" style={{overflow: 'hidden', textOverflow: 'ellipsis'}}>
                     <input className="form-control" defaultValue={this.props.todo.content}
-                           onBlur={this.props.handleBlur.bind(this, this.props.todo)}/>
+                           onBlur={this.props.handleBlur.bind(this, this.props.todo)}
+                           ref={input => this.inputText = input}/>
                 </label>
             )
         }
