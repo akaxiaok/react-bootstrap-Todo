@@ -3,13 +3,29 @@
  */
 import {VisibilityFilters} from './actions'
 import  {START_EDIT, END_EDIT, ADD_TODO, TOGGLE_TODO, SET_VISIBILITY_FILTER, DELETE_TODO} from './actions';
+import Guid from 'guid';
 const initialState = {
     visibilityFilter: VisibilityFilters.SHOW_ALL,
-    todos: [{content: '1', completed: false, edit: false}, {content: '2', completed: false, edit: false}, {
-        content: '3',
-        completed: true,
-        edit: false
-    }]
+    todos: [
+        {
+            id: Guid.raw(),
+            content: '1',
+            completed: false,
+            edit: false
+        },
+        {
+            id: Guid.raw(),
+            content: '2',
+            completed: false,
+            edit: false
+        },
+        {
+            id: Guid.raw(),
+            content: '3',
+            completed: true,
+            edit: false
+        }
+    ]
 };
 
 export function todoApp(state = initialState, action) {
@@ -23,6 +39,7 @@ export function todoApp(state = initialState, action) {
                 todos: [
                     ...state.todos,
                     {
+                        id: Guid.raw(),
                         content: action.text,
                         completed: false,
                         edit: false
