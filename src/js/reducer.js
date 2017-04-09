@@ -4,95 +4,95 @@
 import {VisibilityFilters} from './actions'
 import  {START_EDIT, END_EDIT, ADD_TODO, TOGGLE_TODO, SET_VISIBILITY_FILTER, DELETE_TODO} from './actions';
 import Guid from 'guid';
-const initialState = {
-    visibilityFilter: VisibilityFilters.SHOW_ALL,
-    todos: [
-        {
-            id: Guid.raw(),
-            content: '1',
-            completed: false,
-            edit: false
-        },
-        {
-            id: Guid.raw(),
-            content: '2',
-            completed: false,
-            edit: false
-        },
-        {
-            id: Guid.raw(),
-            content: '3',
-            completed: true,
-            edit: false
-        }
-    ]
-};
+import {combineReducers} from 'redux';
+const initialState = [
+    {
+        id: Guid.raw(),
+        content: '1',
+        completed: false,
+        edit: false
+    },
+    {
+        id: Guid.raw(),
+        content: '2',
+        completed: false,
+        edit: false
+    },
+    {
+        id: Guid.raw(),
+        content: '3',
+        completed: true,
+        edit: false
+    }
+];
 
-export function todoApp(state = initialState, action) {
+
+function visibilityFilter(state = VisibilityFilters.SHOW_ALL, action) {
     switch (action.type) {
         case SET_VISIBILITY_FILTER:
-            return Object.assign({}, state, {
-                visibilityFilter: action.filter
-            });
-        case ADD_TODO:
-            return Object.assign({}, state, {
-                todos: [
-                    ...state.todos,
-                    {
-                        id: Guid.raw(),
-                        content: action.text,
-                        completed: false,
-                        edit: false
-                    }
-                ],
-                visibilityFilter: state.visibilityFilter === VisibilityFilters.SHOW_COMPLETED ? VisibilityFilters.SHOW_ACTIVE : state.visibilityFilter
-            });
+            return action.filter
+        default:
+            return state
+    }
+}
+
+
+function todos(state = initialState, action) {
+    switch (action.type) {
         case TOGGLE_TODO:
-            return Object.assign({}, state, {
-                todos: state.todos.map((todo, index) => {
-                    if (todo === action.todo) {
-                        return Object.assign({}, todo, {
-                            completed: !todo.completed
-                        })
-                    }
-                    return todo
-                })
+            return state.map((todo, index) => {
+                if (action.todo === todo) {
+                    return Object.assign({}, todo, {
+                        completed: !todo.completed
+                    })
+                }
+                else {
+                    return todo;
+                }
             });
         case DELETE_TODO:
-            console.log(action.todo);
-            state.todos.splice(state.todos.indexOf(action.todo), 1);
-            return Object.assign({}, state, {
-                todos: state.todos.map((todo) => todo)
-            });
+            state.splice(state.indexOf(action.todo), 1);
+            return state.map((todo) => todo);
         case START_EDIT:
-            return Object.assign({}, state, {
-                todos: state.todos.map((todo) => {
-                    if (todo === action.todo) {
-                        return Object.assign({}, todo, {
-                            edit: true
-                        })
-                    }
-                    else {
-                        return todo;
-                    }
-                })
+            return state.map((todo) => {
+                if (action.todo === todo) {
+                    return Object.assign({}, todo, {
+                        edit: true
+                    })
+                }
+                else {
+                    return todo;
+                }
             });
         case END_EDIT:
-            return Object.assign({}, state, {
-                todos: state.todos.map((todo) => {
-                    if (todo === action.todo) {
-                        return Object.assign({}, todo, {
-                            content: action.value,
-                            edit: false
-                        })
-                    }
-                    else {
-                        return todo;
-                    }
-                })
+            return state.map((todo) => {
+                if (action.todo === todo) {
+                    return Object.assign({}, todo, {
+                        content: action.value,
+                        edit: false
+                    })
+                }
+                else {
+                    return todo;
+                }
             });
+        case ADD_TODO:
+            return [
+                ...state,
+                {
+                    id: Guid.raw(),
+                    content: action.text,
+                    completed: false,
+                    edit: false
+                }
+            ];
         default:
             return state;
     }
 }
+
+export const todoApp = combineReducers({
+    visibilityFilter,
+    todos
+});
 
