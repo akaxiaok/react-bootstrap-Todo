@@ -19,7 +19,6 @@ class TodoContent extends React.Component {
         }
     }
     render() {
-        console.log(this.props.todo.edit);
         if (this.props.todo.edit === true) {
             return (
                 <label className="col-sm-4 col-xs-8" style={{overflow: 'hidden', textOverflow: 'ellipsis'}}>
