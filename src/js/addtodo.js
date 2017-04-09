@@ -4,6 +4,7 @@
 import React from 'react';
 import {addTodo} from './actions'
 import {connect} from 'react-redux';
+import {VisibilityFilters, setVisibilityFilter} from './actions';
 class AddTodo extends React.Component {
     constructor(props) {
         super(props);
@@ -17,6 +18,9 @@ class AddTodo extends React.Component {
             return;
         }
         let {dispatch} = this.props;
+        if (this.props.visibilityFilter === VisibilityFilters.SHOW_COMPLETED) {
+            dispatch(setVisibilityFilter(VisibilityFilters.SHOW_ACTIVE));
+        }
         dispatch(addTodo(input.value));
         input.value = '';
         input.focus();
@@ -35,5 +39,10 @@ class AddTodo extends React.Component {
         )
     }
 }
-AddTodo = connect()(AddTodo);
+const mapStateToProps = (state) => {
+    return {
+        visibilityFilter: state.visibilityFilter
+    }
+};
+AddTodo = connect(mapStateToProps)(AddTodo);
 export default AddTodo;
