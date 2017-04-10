@@ -19,5 +19,5 @@ $ npm start
 $ npm run build 
 ```
 ## Todo
-- [ ] redux
+- [x] redux
 - [ ] test
