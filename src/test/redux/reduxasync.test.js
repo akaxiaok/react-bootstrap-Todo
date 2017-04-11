@@ -7,8 +7,7 @@ import fetch from 'isomorphic-fetch';
 const FETCH_THING = 'FETCH_THING';
 import promiseMiddleware from 'redux-promise-middleware';
 import rq from 'request-promise-native';
-/*
- let reducer = function (state = {}, action) {
+let reducer = function (state = {}, action) {
     switch (action.type) {
         case FETCH_THING:
             return action.result;
@@ -18,13 +17,13 @@ import rq from 'request-promise-native';
 };
 
 const store = createStore(
- reducer,
+    reducer,
     applyMiddleware(thunkMiddleware)
 );
 
 let getThunkAction = (language) => {
     return (dispatch) => {
- return fetch(`https://api.github.com/search/repositories?q=${language}&sort=stars`).then(response => response.json()).then(
+        return fetch(`https://api.github.com/search/repositories?q=${language}&sort=stars`).then(response => response.json()).then(
             json => {
                 dispatch({
                     type: FETCH_THING,
@@ -41,49 +40,47 @@ let unsubscribe = store.subscribe(() => {
 });
 store.dispatch(getThunkAction('java'));
 
- // unsubscribe(); // 不能调用，否则不显示
+// unsubscribe(); // 不能调用，否则不显示
 
 
- const getList = language => ({
- type: 'GET',
- payload: new Promise(resolve => {
- setTimeout(() => {
- fetch(`https://api.github.com/search/repositories?q=${language}&sort=stars`).then(response => {
- resolve(response.json());
- })
- }, 1000)
+const getList = language => ({
+    type: 'GET',
+    payload: new Promise(resolve => {
+        setTimeout(() => {
+            fetch(`https://api.github.com/search/repositories?q=${language}&sort=stars`).then(response => {
+                resolve(response.json());
+            })
+        }, 1000)
 
- })
- });
+    })
+});
 
- const reducer2 = (state = {}, action) => {
- switch (action.type) {
- case 'GET_PENDING':
- return {
- isPending: true
- };
- case 'GET_FULFILLED':
- return {
- body: action.payload
- };
- default:
- return state;
- }
- ;
- };
- const store2 = createStore(reducer2, {}, applyMiddleware(
- thunkMiddleware,
- promiseMiddleware()
- ));
+const reducer2 = (state = {}, action) => {
+    switch (action.type) {
+        case 'GET_PENDING':
+            return {
+                isPending: true
+            };
+        case 'GET_FULFILLED':
+            return {
+                body: action.payload
+            };
+        default:
+            return state;
+    }
+};
+const store2 = createStore(reducer2, {}, applyMiddleware(
+    thunkMiddleware,
+    promiseMiddleware()
+));
 
- store2.getState();
+store2.getState();
 
- store2.subscribe(() => {
- console.log(store2.getState());
- });
- store2.dispatch(getList('java'));
+store2.subscribe(() => {
+    console.log(store2.getState());
+});
+store2.dispatch(getList('java'));
 
- */
 
 const getList3 = language => {
     const options = {
