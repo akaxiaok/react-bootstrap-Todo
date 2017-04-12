@@ -40,19 +40,12 @@ let unsubscribe = store.subscribe(() => {
 });
 store.dispatch(getThunkAction('java'));
 
-// unsubscribe(); // 不能调用，否则不显示
+unsubscribe(); // 不能调用，否则不显示
 
 
 const getList = language => ({
     type: 'GET',
-    payload: new Promise(resolve => {
-        setTimeout(() => {
-            fetch(`https://api.github.com/search/repositories?q=${language}&sort=stars`).then(response => {
-                resolve(response.json());
-            })
-        }, 1000)
-
-    })
+    payload: fetch(`https://api.github.com/search/repositories?q=${language}&sort=stars`).then(r => r.json()).catch(e => e)
 });
 
 const reducer2 = (state = {}, action) => {
@@ -92,7 +85,7 @@ const getList3 = language => {
     };
     return {
         type: 'GET',
-        payload: rq(options)
+        payload: rq(options).catch(e => e)
     }
 };
 
@@ -122,3 +115,4 @@ store3.subscribe(() => {
     console.log(store3.getState());
 });
 store3.dispatch(getList3('java'));
+
