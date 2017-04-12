@@ -10,7 +10,9 @@ import rq from 'request-promise-native';
 let reducer = function (state = {}, action) {
     switch (action.type) {
         case FETCH_THING:
-            return action.result;
+            return {
+                body: action.result
+            };
         default:
             return state;
     }
@@ -23,14 +25,12 @@ const store = createStore(
 
 let getThunkAction = (language) => {
     return (dispatch) => {
-        return fetch(`https://api.github.com/search/repositories?q=${language}&sort=stars`).then(response => response.json()).then(
-            json => {
-                dispatch({
-                    type: FETCH_THING,
-                    result: json
-                })
-            }
-        )
+        return fetch(`https://api.github.com/search/repositories?q=${language}&sort=stars`).then(r => r.json()).then(json => {
+            dispatch({
+                type: FETCH_THING,
+                result: json
+            })
+        })
     }
 };
 store.getState();
