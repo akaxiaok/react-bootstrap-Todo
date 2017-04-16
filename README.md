@@ -1,4 +1,4 @@
-# react-bootstrap-todo
+# react-todo
 
 A demo use react, bootstrap, webpack and more
 
