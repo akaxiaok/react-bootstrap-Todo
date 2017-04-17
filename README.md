@@ -21,3 +21,4 @@ $ npm run build
 ## Todo
 - [x] redux
 - [ ] test
+- [ ] router
