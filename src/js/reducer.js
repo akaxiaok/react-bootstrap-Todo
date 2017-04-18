@@ -51,7 +51,10 @@ function todos(state = initialState, action) {
                 }
             });
         case DELETE_TODO:
-            state.splice(state.indexOf(action.todo), 1);
+            let index = state.indexOf(action.todo);
+            if (index !== -1) {
+                state.splice(index, 1);
+            }
             return state.map((todo) => todo);
         case START_EDIT:
             return state.map((todo) => {
