@@ -23,7 +23,7 @@ class TodoContent extends React.Component {
             return (
                 <label className="col-sm-4 col-xs-8" style={{overflow: 'hidden', textOverflow: 'ellipsis'}}>
                     <input className="form-control" defaultValue={this.props.todo.content}
-                           onBlur={this.props.handleBlur.bind(this, this.props.todo)}
+                           onBlur={this.props.handleBlur.bind(this, this.props.id)}
                            ref={input => this.inputText = input}/>
                 </label>
             )
@@ -33,7 +33,7 @@ class TodoContent extends React.Component {
                 <label className="col-sm-4 col-xs-8" style={{overflow: 'hidden', textOverflow: 'ellipsis'}}>
                      <span style={{position: 'absolute'}}>
                         <input type="checkbox" className="awesome" id={'checkbox' + this.props.id}
-                               onChange={this.props.handleClick.bind(this, this.props.todo)}
+                               onChange={this.props.handleClick.bind(this, this.props.id)}
                                checked={this.props.todo.completed}/>
                          <label htmlFor={'checkbox' + this.props.id}/>
                      </span>
@@ -47,11 +47,11 @@ class TodoContent extends React.Component {
 
 function mapDispatchToProps(dispatch) {
     return {
-        handleClick: (todo) => {
-            dispatch(toggleTodo(todo))
+        handleClick: (id) => {
+            dispatch(toggleTodo(id))
         },
-        handleBlur: (todo, e) => {
-            dispatch(endEdit(todo, e.target.value));
+        handleBlur: (id, e) => {
+            dispatch(endEdit(id, e.target.value));
         }
     };
 }

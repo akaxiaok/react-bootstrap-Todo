@@ -41,7 +41,7 @@ function todos(state = initialState, action) {
     switch (action.type) {
         case TOGGLE_TODO:
             return state.map((todo, index) => {
-                if (action.todo === todo) {
+                if (action.id === todo.id) {
                     return Object.assign({}, todo, {
                         completed: !todo.completed
                     })
@@ -51,14 +51,12 @@ function todos(state = initialState, action) {
                 }
             });
         case DELETE_TODO:
-            let index = state.indexOf(action.todo);
-            if (index !== -1) {
-                state.splice(index, 1);
-            }
-            return state.map((todo) => todo);
+            return state.filter(todo => {
+                return todo.id !== action.id;
+            });
         case START_EDIT:
             return state.map((todo) => {
-                if (action.todo === todo) {
+                if (action.id === todo.id) {
                     return Object.assign({}, todo, {
                         edit: true
                     })
@@ -69,7 +67,7 @@ function todos(state = initialState, action) {
             });
         case END_EDIT:
             return state.map((todo) => {
-                if (action.todo === todo) {
+                if (action.id === todo.id) {
                     return Object.assign({}, todo, {
                         content: action.value,
                         edit: false

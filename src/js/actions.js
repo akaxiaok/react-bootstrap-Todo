@@ -13,16 +13,16 @@ export const VisibilityFilters = {
     SHOW_ACTIVE: 'SHOW_ACTIVE'
 };
 
-export function startEdit(todo) {
+export function startEdit(id) {
     return {
         type: START_EDIT,
-        todo
+        id
     }
 }
-export function endEdit(todo, value) {
+export function endEdit(id, value) {
     return {
         type: END_EDIT,
-        todo,
+        id,
         value
     }
 }
@@ -32,14 +32,14 @@ export function addTodo(text) {
         type: ADD_TODO, text
     }
 }
-export function toggleTodo(todo) {
+export function toggleTodo(id) {
     return {
-        type: TOGGLE_TODO, todo
+        type: TOGGLE_TODO, id
     }
 }
-export function deleteTodo(todo) {
+export function deleteTodo(id) {
     return {
-        type: DELETE_TODO, todo
+        type: DELETE_TODO, id
     }
 }
 

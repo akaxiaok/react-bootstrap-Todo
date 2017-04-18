@@ -12,7 +12,7 @@ class EditTodo extends React.Component {
     render() {
         return (
             <a type="button" className="" href="#" style={{marginLeft: '.1em', verticalAlign: '-.1em'}}
-               onClick={this.props.handleClick.bind(this, this.props.todo)}>
+               onClick={this.props.handleClick.bind(this, this.props.id)}>
                 <span className="glyphicon glyphicon-edit" aria-hidden="true"/>
             </a>
         );
@@ -21,8 +21,8 @@ class EditTodo extends React.Component {
 
 function mapDispatchToProps(dispatch) {
     return {
-        handleClick: (todo) => {
-            dispatch(startEdit(todo));
+        handleClick: (id) => {
+            dispatch(startEdit(id));
         }
     };
 }

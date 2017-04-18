@@ -16,12 +16,12 @@ class Todo extends React.Component {
 
     render() {
         let lists = [];
-        this.props.todos.forEach((v, i) => {
+        this.props.todos.forEach((v) => {
             lists.push(
                 <div key={v.id} className="row" style={{fontSize: '24px'}}>
-                    <TodoContent id={i} todo={v}/>
-                    <EditTodo id={i} todo={v}/>
-                    <DeleteTodo todo={v}/>
+                    <TodoContent id={v.id} todo={v}/>
+                    <EditTodo id={v.id}/>
+                    <DeleteTodo id={v.id}/>
                 </div>)
         });
         return (

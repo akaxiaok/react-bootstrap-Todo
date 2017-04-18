@@ -12,7 +12,7 @@ class DeleteTodo extends React.Component {
     render() {
         return (
             <a type="button" className="" href="#" style={{marginLeft: '.1em', verticalAlign: '-.1em'}}
-               onClick={this.props.handleClick.bind(this, this.props.todo)}>
+               onClick={this.props.handleClick.bind(this, this.props.id)}>
                 <span className="glyphicon glyphicon-remove" aria-hidden="true"/>
             </a>
         );
@@ -21,8 +21,8 @@ class DeleteTodo extends React.Component {
 }
 function mapDispatchToProps(dispatch) {
     return {
-        handleClick: (todo) => {
-            dispatch(deleteTodo(todo))
+        handleClick: (id) => {
+            dispatch(deleteTodo(id))
         }
     };
 }
