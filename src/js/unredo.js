@@ -11,7 +11,7 @@ class Unredo extends React.Component {
 
     render() {
         return (
-            <div className="btn-group view-buttons">
+            <div className="btn-group view-buttons" style={{marginLeft: "10px"}}>
                 <button className="btn btn-default" onClick={this.props.undo} disabled={!this.props.canUndo}>
                     Undo
                 </button>
