@@ -4,6 +4,7 @@
 import React from 'react';
 import {VisibilityFilters, setVisibilityFilter} from './actions';
 import {connect} from 'react-redux';
+import Unredo from './unredo'
 class TodoView extends React.Component {
     constructor(props) {
         super(props);
@@ -21,17 +22,20 @@ class TodoView extends React.Component {
 
     render() {
         return (
-            <div className="btn-group view-buttons" role="group" aria-label="...">
-                <button type="button" className={this.getStyle(VisibilityFilters.SHOW_ALL)}
-                        onClick={this.props.handleClick.bind(this, VisibilityFilters.SHOW_ALL)}>
-                    All
-                </button>
-                <button type="button" className={this.getStyle(VisibilityFilters.SHOW_ACTIVE)}
-                        onClick={this.props.handleClick.bind(this, VisibilityFilters.SHOW_ACTIVE)}>Active
-                </button>
-                <button type="button" className={this.getStyle(VisibilityFilters.SHOW_COMPLETED)}
-                        onClick={this.props.handleClick.bind(this, VisibilityFilters.SHOW_COMPLETED)}>Completed
-                </button>
+            <div>
+                <div className="btn-group view-buttons" role="group" aria-label="...">
+                    <button type="button" className={this.getStyle(VisibilityFilters.SHOW_ALL)}
+                            onClick={this.props.handleClick.bind(this, VisibilityFilters.SHOW_ALL)}>
+                        All
+                    </button>
+                    <button type="button" className={this.getStyle(VisibilityFilters.SHOW_ACTIVE)}
+                            onClick={this.props.handleClick.bind(this, VisibilityFilters.SHOW_ACTIVE)}>Active
+                    </button>
+                    <button type="button" className={this.getStyle(VisibilityFilters.SHOW_COMPLETED)}
+                            onClick={this.props.handleClick.bind(this, VisibilityFilters.SHOW_COMPLETED)}>Completed
+                    </button>
+                </div>
+                <Unredo />
             </div>
         )
     }
