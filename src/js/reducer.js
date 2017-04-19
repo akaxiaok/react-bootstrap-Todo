@@ -5,7 +5,7 @@ import {VisibilityFilters} from './actions'
 import  {START_EDIT, END_EDIT, ADD_TODO, TOGGLE_TODO, SET_VISIBILITY_FILTER, DELETE_TODO} from './actions';
 import Guid from 'guid';
 import {combineReducers} from 'redux';
-import undoable from 'redux-undo';
+import undoable, {excludeAction} from 'redux-undo';
 const initialState = [
     {
         id: Guid.raw(),
@@ -95,6 +95,6 @@ function todos(state = initialState, action) {
 
 const todoApp = combineReducers({
     visibilityFilter,
-    todos: undoable(todos)
+    todos: undoable(todos, {filter: excludeAction(END_EDIT)})
 });
 export default todoApp;
