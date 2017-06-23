@@ -11,8 +11,8 @@ class DeleteTodo extends React.Component {
 
     render() {
         return (
-            <a type="button" className="" href="#" style={{marginLeft: '.1em', verticalAlign: '-.1em'}}
-               onClick={this.props.handleClick.bind(this, this.props.id)}>
+          <a type="button" className="" style={{ marginLeft: '.1em', verticalAlign: '-.1em' }}
+             onClick={this.props.handleClick.bind(this, this.props.id)}>
                 <span className="glyphicon glyphicon-remove" aria-hidden="true"/>
             </a>
         );
