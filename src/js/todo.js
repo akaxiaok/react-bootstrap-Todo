@@ -5,7 +5,7 @@ import React from 'react';
 import TodoContent from './todocontent';
 import DeleteTodo from './deletetodo'
 import AddTodo from './addtodo';
-import TodoView from './todoview'
+import TodoView from './container/todoview'
 import EditTodo from './edittodo';
 import {connect} from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
