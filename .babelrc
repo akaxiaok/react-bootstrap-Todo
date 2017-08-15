@@ -3,5 +3,19 @@
     "env",
     "stage-0",
     "react"
-  ]
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        [
+          "istanbul",
+          {
+            "exclude": [
+              "src/**/*.spec.js"
+            ]
+          }
+        ]
+      ]
+    }
+  }
 }
