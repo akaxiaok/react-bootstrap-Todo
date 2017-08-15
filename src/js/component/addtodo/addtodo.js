@@ -2,8 +2,7 @@
  * Created by Kimi on 2017/3/27.
  */
 import React from 'react';
-import {addTodo} from '../../actions'
-import {VisibilityFilters, setVisibilityFilter} from '../../actions';
+import {VisibilityFilters} from '../../actions';
 
 class AddTodo extends React.Component {
     handleClick = e => {
@@ -13,9 +12,8 @@ class AddTodo extends React.Component {
             input.focus();
             return;
         }
-        let {dispatch} = this.props;
         if (this.props.visibilityFilter === VisibilityFilters.SHOW_COMPLETED) {
-            dispatch(setVisibilityFilter(VisibilityFilters.SHOW_ACTIVE));
+            this.props.setVisibilityFilter(VisibilityFilters.SHOW_ACTIVE);
         }
         this.props.addTodo(input.value);
         input.value = '';
