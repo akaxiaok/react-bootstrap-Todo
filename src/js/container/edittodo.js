@@ -1,14 +1,14 @@
 /**
- * Created by Kimi on 2017/3/27.
+ * Created by Kimi on 2017/3/29.
  */
 import React from 'react';
+import {startEdit} from '../actions';
 import {connect} from 'react-redux';
-import {deleteTodo} from '../actions';
 import {ModifyTodo} from '../component';
 
 const container = (props) => {
     return (
-        <ModifyTodo {...props} action="remove"/>
+        <ModifyTodo {...props} action="edit"/>
     )
 
 }
@@ -16,7 +16,7 @@ const container = (props) => {
 function mapDispatchToProps(dispatch) {
     return {
         handleClick: (id) => {
-            dispatch(deleteTodo(id))
+            dispatch(startEdit(id));
         }
     };
 }
