@@ -95,6 +95,6 @@ function todos(state = initialState, action) {
 
 const todoApp = combineReducers({
     visibilityFilter,
-    todos: undoable(todos, {filter: excludeAction(END_EDIT)})
+    todos: undoable(todos, {filter: excludeAction([END_EDIT, SET_VISIBILITY_FILTER])})
 });
 export default todoApp;
