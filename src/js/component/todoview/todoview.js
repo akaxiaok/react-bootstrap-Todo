@@ -27,7 +27,7 @@ class TodoView extends React.Component {
                   onClick={this.props.handleClick.bind(this, VisibilityFilters.SHOW_COMPLETED)} >Completed
           </button >
         </div >
-        <Unredo />
+        <Unredo {...this.props.unredos}/>
       </div >
     )
   }
