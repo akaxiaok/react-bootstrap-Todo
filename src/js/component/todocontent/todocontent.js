@@ -2,12 +2,9 @@
  * Created by Kimi on 2017/3/27.
  */
 import React from 'react';
-import {toggleTodo, endEdit} from './actions';
+import {toggleTodo, endEdit} from '../../actions';
 import {connect} from 'react-redux';
 class TodoContent extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     handleBlur = (e) => {
         this.props.data.content = e.target.value;
         this.props.setChange(this.props.data)
@@ -45,18 +42,5 @@ class TodoContent extends React.Component {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        handleClick: (id) => {
-            dispatch(toggleTodo(id))
-        },
-        handleBlur: (id, e) => {
-            dispatch(endEdit(id, e.target.value));
-        }
-    };
-}
-
-
-TodoContent = connect(null, mapDispatchToProps)(TodoContent);
 
 export default TodoContent;
