@@ -2,13 +2,15 @@
  * Created by Kimi on 2017/3/27.
  */
 import React from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import TodoContent from './todocontent';
 import DeleteTodo from './deletetodo'
-import AddTodo from './container/addtodo';
-import TodoView from './container/todoview'
+import AddTodo from './addtodo';
+import TodoView from './todoview'
 import EditTodo from './edittodo';
 import {connect} from 'react-redux';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import Unredo from "./unredo";
+
 class Todo extends React.Component {
     constructor(props) {
         super(props);
@@ -30,7 +32,8 @@ class Todo extends React.Component {
                     <h1>TodoList:</h1>
                 </div>
                 <TodoView currentState={this.props.currentState}/>
-                <AddTodo />
+                <Unredo/>
+                <AddTodo/>
                 <div className="content-list">
                     <ReactCSSTransitionGroup
                         transitionName="example"
@@ -44,6 +47,7 @@ class Todo extends React.Component {
         )
     }
 }
+
 const getVisibleTodos = (todos, filter) => {
     switch (filter) {
         case 'SHOW_ALL':
