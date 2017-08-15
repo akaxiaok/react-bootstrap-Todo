@@ -2,14 +2,10 @@
  * Created by Kimi on 2017/3/27.
  */
 import React from 'react';
-import {addTodo} from './actions'
-import {connect} from 'react-redux';
-import {VisibilityFilters, setVisibilityFilter} from './actions';
-class AddTodo extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+import {addTodo} from '../../actions'
+import {VisibilityFilters, setVisibilityFilter} from '../../actions';
 
+class AddTodo extends React.Component {
     handleClick = e => {
         e.preventDefault();
         let input = e.target.querySelector('input');
@@ -21,7 +17,7 @@ class AddTodo extends React.Component {
         if (this.props.visibilityFilter === VisibilityFilters.SHOW_COMPLETED) {
             dispatch(setVisibilityFilter(VisibilityFilters.SHOW_ACTIVE));
         }
-        dispatch(addTodo(input.value));
+        this.props.addTodo(input.value);
         input.value = '';
         input.focus();
     }
@@ -39,10 +35,5 @@ class AddTodo extends React.Component {
         )
     }
 }
-const mapStateToProps = (state) => {
-    return {
-        visibilityFilter: state.visibilityFilter
-    }
-};
-AddTodo = connect(mapStateToProps)(AddTodo);
+
 export default AddTodo;
