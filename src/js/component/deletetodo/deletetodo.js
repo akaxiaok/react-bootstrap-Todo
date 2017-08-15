@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import {connect} from 'react-redux';
-import {deleteTodo} from './actions';
+import {deleteTodo} from '../../actions';
 class DeleteTodo extends React.Component {
     constructor(props) {
         super(props);
