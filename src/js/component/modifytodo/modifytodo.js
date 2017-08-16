@@ -3,8 +3,7 @@
  */
 import React from 'react';
 
-const modify = (props) => {
-    console.log(props);
+const modifyTodo = (props) => {
     const className = `glyphicon glyphicon-${props.action}`;
     return (
         <a type="button" className="" style={{marginLeft: '.1em', verticalAlign: '-.1em'}}
@@ -14,4 +13,4 @@ const modify = (props) => {
     );
 }
 
-export default modify;
+export default modifyTodo;
