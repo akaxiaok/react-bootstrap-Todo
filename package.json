@@ -6,6 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server --devtool eval --progress --hot --colors",
     "build": "gulp",
+    "test": "mocha --compilers js:babel-core/register src/**/*.spec.js",
+    "test:watch": "mocha --watch --compilers js:babel-core/register src/**/*.spec.js",
     "test:coverage": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mocha src/**/*.spec.js"
   },
   "author": "Kimi",
