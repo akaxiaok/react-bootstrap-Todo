@@ -2,14 +2,7 @@
  * Created by Kimi on 2017/3/27.
  */
 import React from 'react';
-import {toggleTodo, endEdit} from '../../actions';
-import {connect} from 'react-redux';
 class TodoContent extends React.Component {
-    handleBlur = (e) => {
-        this.props.data.content = e.target.value;
-        this.props.setChange(this.props.data)
-    }
-
     componentDidUpdate() {
         if (this.inputText) {
             this.inputText.focus();
