@@ -3,17 +3,17 @@
  */
 import React from 'react';
 import {connect} from 'react-redux';
-import {deleteTodo} from '../actions';
-import {ModifyTodo} from '../component';
+import {deleteTodo} from '../../actions';
+import {ModifyTodo} from '../../component/index';
 
-const container = (props) => {
+export const container = (props) => {
     return (
         <ModifyTodo {...props} action="remove"/>
     )
 
 }
 
-function mapDispatchToProps(dispatch) {
+export function mapDispatchToProps(dispatch) {
     return {
         handleClick: (id) => {
             dispatch(deleteTodo(id))
