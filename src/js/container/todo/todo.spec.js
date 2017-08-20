@@ -1,7 +1,7 @@
 import {assert} from 'chai';
 import React from 'react';
 import {shallow} from 'enzyme';
-import {mapStateToProps, Todo} from "./Todo";
+import {mapStateToProps, Todo} from "./todo";
 import {VisibilityFilters} from "../../actions";
 
 
