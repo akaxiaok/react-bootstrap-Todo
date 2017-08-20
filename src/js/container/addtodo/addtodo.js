@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import {connect} from 'react-redux';
-import {AddTodo} from '../../component/index';
+import {AddTodo} from '../../component';
 import {addTodo, setVisibilityFilter} from "../../actions"
 
 export const mapStateToProps = (state) => {

@@ -4,7 +4,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {deleteTodo} from '../../actions';
-import {ModifyTodo} from '../../component/index';
+import {ModifyTodo} from '../../component';
 
 export const container = (props) => {
     return (
