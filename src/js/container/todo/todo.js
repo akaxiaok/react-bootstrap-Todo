@@ -3,19 +3,15 @@
  */
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import TodoContent from './todocontent';
-import DeleteTodo from './deletetodo'
-import AddTodo from './addtodo';
-import TodoView from './todoview'
-import EditTodo from './edittodo';
+import TodoContent from '../todocontent';
+import DeleteTodo from '../deletetodo'
+import AddTodo from '../addtodo';
+import TodoView from '../todoview'
+import EditTodo from '../edittodo';
 import {connect} from 'react-redux';
-import Unredo from "./unredo";
+import Unredo from "../unredo";
 
-class Todo extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
+export class Todo extends React.Component {
     render() {
         let lists = [];
         this.props.todos.forEach((v) => {
@@ -31,7 +27,7 @@ class Todo extends React.Component {
                 <div className="page-header">
                     <h1>TodoList:</h1>
                 </div>
-                <TodoView currentState={this.props.currentState}/>
+                <TodoView/>
                 <Unredo/>
                 <AddTodo/>
                 <div className="content-list">
@@ -48,7 +44,7 @@ class Todo extends React.Component {
     }
 }
 
-const getVisibleTodos = (todos, filter) => {
+export const getVisibleTodos = (todos, filter) => {
     switch (filter) {
         case 'SHOW_ALL':
             return todos;
@@ -61,12 +57,8 @@ const getVisibleTodos = (todos, filter) => {
     }
 };
 
-const mapStateToProps = (state) => ({
-    todos: getVisibleTodos(state.todos.present, state.visibilityFilter),
-    visibilityFilter: state.visibilityFilter
+export const mapStateToProps = (state) => ({
+    todos: getVisibleTodos(state.todos.present, state.visibilityFilter)
 });
 
-Todo = connect(
-    mapStateToProps
-)(Todo);
-export default Todo;
+export default connect(mapStateToProps)(Todo);

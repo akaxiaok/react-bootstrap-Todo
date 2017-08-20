@@ -11,7 +11,9 @@
           "istanbul",
           {
             "exclude": [
-              "src/**/*.spec.js"
+              "src/**/*.spec.js",
+              "src/js/*.js",
+              "*.js"
             ]
           }
         ]

@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Provider} from 'react-redux';
-import Todo from './container/todo'
+import Todo from './container'
 import store from './store';
 
 ReactDOM.render(

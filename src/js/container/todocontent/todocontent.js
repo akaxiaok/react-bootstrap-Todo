@@ -3,16 +3,10 @@
  */
 import React from 'react';
 import {connect} from 'react-redux';
-import {toggleTodo, endEdit} from '../actions';
-import {TodoContent} from '../component';
+import {toggleTodo, endEdit} from '../../actions';
+import {TodoContent} from '../../component';
 
-const container = (props) => {
-    return (
-        <TodoContent {...props}/>
-    )
-}
-
-function mapDispatchToProps(dispatch) {
+export function mapDispatchToProps(dispatch) {
     return {
         handleClick: (id) => {
             dispatch(toggleTodo(id))
@@ -23,5 +17,5 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(null, mapDispatchToProps)(container);
+export default connect(null, mapDispatchToProps)(TodoContent);
 
