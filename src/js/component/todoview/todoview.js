@@ -1,5 +1,4 @@
 import React from 'react';
-import {Unredo} from '../index'
 import {VisibilityFilters} from '../../actions';
 
 class TodoView extends React.Component {
