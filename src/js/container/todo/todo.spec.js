@@ -40,5 +40,10 @@ describe('<Todo /> container', () => {
             const result = mapStateToProps({todos: {present: todos}, visibilityFilter: VisibilityFilters.SHOW_ACTIVE})
             assert.strictEqual(result.todos.length, 1);
         })
+        it('should throw error when filter not exist', () => {
+            assert.throws(() => {
+                mapStateToProps({todos: {present: todos}, visibilityFilter: 'other'})
+            }, 'Unknown filter: other');
+        })
     });
 })
