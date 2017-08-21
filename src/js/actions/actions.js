@@ -19,6 +19,7 @@ export function startEdit(id) {
         id
     }
 }
+
 export function endEdit(id, value) {
     return {
         type: END_EDIT,
@@ -32,11 +33,13 @@ export function addTodo(text) {
         type: ADD_TODO, text
     }
 }
+
 export function toggleTodo(id) {
     return {
         type: TOGGLE_TODO, id
     }
 }
+
 export function deleteTodo(id) {
     return {
         type: DELETE_TODO, id
@@ -44,5 +47,7 @@ export function deleteTodo(id) {
 }
 
 export function setVisibilityFilter(filter) {
-    return {type: SET_VISIBILITY_FILTER, filter}
+    return {
+        type: SET_VISIBILITY_FILTER, filter
+    }
 }
