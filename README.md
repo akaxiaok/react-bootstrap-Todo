@@ -5,6 +5,7 @@ A demo use react, bootstrap, webpack and more
 ## How to use
 - First
 ``` bash
+$ npm install webpack & mocha -g
 $ npm install
 ```
 
@@ -12,13 +13,18 @@ $ npm install
 ```bash
 $ npm start
 ```
+- Test
+
+```bash
+$npm test
+```
 
 - Build to /build
 
 ```bash
 $ npm run build 
 ```
+
 ## Todo
 - [x] redux
-- [ ] test
-- [ ] router
+- [x] test
