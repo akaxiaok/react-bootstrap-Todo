@@ -2,7 +2,7 @@
  * Created by Kimi on 2017/4/3.
  */
 import {createStore} from 'redux';
-import todoApp from './reducer';
+import todoApp from '../reducer';
 
 let window = window ? window : null;
 let store = null;

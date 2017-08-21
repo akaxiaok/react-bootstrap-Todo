@@ -1,11 +1,20 @@
 /**
  * Created by Kimi on 2017/4/3.
  */
-import {VisibilityFilters} from './actions'
-import  {START_EDIT, END_EDIT, ADD_TODO, TOGGLE_TODO, SET_VISIBILITY_FILTER, DELETE_TODO} from './actions';
+import {
+    VisibilityFilters,
+    START_EDIT,
+    END_EDIT,
+    ADD_TODO,
+    TOGGLE_TODO,
+    SET_VISIBILITY_FILTER,
+    DELETE_TODO
+} from '../actions';
 import Guid from 'guid';
 import {combineReducers} from 'redux';
 import undoable, {excludeAction} from 'redux-undo';
+import {Todo} from "../container/todo/todo";
+
 const initialState = [
     {
         id: Guid.raw(),
@@ -28,7 +37,7 @@ const initialState = [
 ];
 
 
-function visibilityFilter(state = VisibilityFilters.SHOW_ALL, action) {
+export function visibilityFilter(state = VisibilityFilters.SHOW_ALL, action) {
     switch (action.type) {
         case SET_VISIBILITY_FILTER:
             return action.filter
@@ -38,10 +47,10 @@ function visibilityFilter(state = VisibilityFilters.SHOW_ALL, action) {
 }
 
 
-function todos(state = initialState, action) {
+export function todos(state = initialState, action) {
     switch (action.type) {
         case TOGGLE_TODO:
-            return state.map((todo, index) => {
+            return state.map((todo) => {
                 if (action.id === todo.id) {
                     return Object.assign({}, todo, {
                         completed: !todo.completed
@@ -97,4 +106,5 @@ const todoApp = combineReducers({
     visibilityFilter,
     todos: undoable(todos, {filter: excludeAction([END_EDIT, SET_VISIBILITY_FILTER])})
 });
+
 export default todoApp;

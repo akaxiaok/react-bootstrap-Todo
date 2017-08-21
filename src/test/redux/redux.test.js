@@ -1,8 +1,8 @@
 /**
  * Created by Kimi on 2017/4/3.
  */
-import  {addTodo, toggleTodo, setVisibilityFilter, VisibilityFilters} from '../../js/actions';
-import  store from '../../js/store';
+import {addTodo, toggleTodo, setVisibilityFilter, VisibilityFilters} from '../../js/actions/actions';
+import store from '../../js/store/store';
 
 // Log the initial state
 console.log(store.getState());
