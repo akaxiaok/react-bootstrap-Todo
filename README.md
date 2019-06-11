@@ -1,5 +1,5 @@
 # react-todo
-![CircleCI](https://img.shields.io/circleci/build/github/akaxiaok/react-todo.svg?style=for-the-badge)
+[![CircleCI](https://img.shields.io/circleci/build/github/akaxiaok/react-todo.svg?style=for-the-badge)](https://circleci.com/gh/akaxiaok/react-todo)
 
 A demo use react, bootstrap, webpack and more
 
